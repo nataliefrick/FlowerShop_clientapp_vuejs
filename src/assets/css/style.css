@@ -1,0 +1,234 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+
+ .display-font {
+  font-family: 'Great Vibes', cursive;
+}
+
+.block-font {
+  font-family: 'Bebas Neue', cursive;
+}
+
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+.brand-logo {
+  z-index: 1;
+}
+
+.brand-logo img {
+  height: 40px;
+  width: auto;
+  border-radius: 50%;
+  margin-top: 12px;
+} 
+
+.italic {
+  font-style: italic;
+}
+
+h1.header {
+  margin-top: 0!important;
+  font-size: 5em!important;
+  color: #4CAF50!important;
+}
+
+.green {
+  background-color: #4CAF50 !important;
+}
+
+h2.header {
+  margin-top: 0!important;
+  margin-bottom: 0!important;
+  font-size: 4.2em!important;
+  color: #4CAF50!important;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.sidenav-trigger {
+  color: #156b37;
+}
+
+.white-bkg {
+  background-color: #ffffff;  
+  padding: 5% 0 2% 0;
+  margin: 5% 20%;
+}
+
+@media only screen and (max-width : 600px) {
+  h2.header {
+    font-size: 2.2em!important;
+  }
+  h1.header {
+    font-size: 3em!important;
+  }
+
+  .parallax-container {
+    height: auto;
+  }
+}
+
+.parallax-container {
+  min-height: 200px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+
+.parallax-container .section {
+  width: 100%;
+}
+
+.polygon {
+  width: 100%;
+  padding: 3.2em 0;
+  clip-path: polygon(0% 0%, 100% 15%, 100% 100%, 0% 85%);
+  background-color: #4CAF50;
+}
+
+
+table.highlight>tbody>tr:hover {
+  background-color: #4CAF5050!important;
+}
+
+.shift-right {
+  margin-left: 3em;
+  margin-right: 3em;
+}
+
+.radio-label {
+  font-size: 1rem;
+}
+
+#radio.valign-wrapper {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+} 
+
+@media only screen and (min-width: 993px) {
+  .container {
+      width: 85%;
+  }
+}
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
+
+/* .card {
+  padding: 2em 3em;
+} */
+
+.card {
+  padding: 0;
+}
+
+.card .card-content .card-title {
+  display: block;
+  line-height: 32px;
+  margin-bottom: 8px;
+}
+
+
+.card .card-title {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.article {
+  font-size: 20px!important;
+  /* font-weight: 400!important; */
+  text-transform: uppercase;
+  /* background-color: green; */
+}
+
+.columns3 {
+  column-count: 3;
+  column-gap: 0;
+}
+
+.columns3 img {
+  padding: 5px;
+  object-fit: cover;
+}
+
+.large-img {
+  margin: 0 auto;
+}
+
+.margin-large {
+  margin-top: 3%;
+  margin-bottom: 5%;
+}
+
+.flex-box-nowrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.flex-box-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.flex-box-wrap div.card {
+  max-width: 260px;
+}
+
+span.bold {
+  font-weight: 600!important;
+}
+
+div.card:hover {
+  border:1px solid #4CAF50;
+}
+
+.small-text {
+  font-size: 0.8em;
+  padding: 0 1em;
+  margin: 0;
+}
