@@ -12,7 +12,7 @@
                         Price: {{this.plant.price}}kr</p>
                     </div>
                     <div class="col s4">
-                        <img :src="'../src/assets/img/'+this.plant.photo_link" />
+                        <img :src="'/img/'+this.plant.photo_link" />
                     </div>
                 </div>
             </div>

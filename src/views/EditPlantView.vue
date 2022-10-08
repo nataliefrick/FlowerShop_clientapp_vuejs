@@ -12,7 +12,7 @@
                             <input v-model="plant.title" id="plantname" type="text" class="validate" >
                             <label for="plantname">Name of Plant</label>
                             <div class="col s4">
-                                <img :src="'../src/assets/img/'+this.plant.photo_link" />
+                                <img :src="'/img/'+this.plant.photo_link" />
                             </div>
                             <div class="input-field col s8">
                                 <input v-model="plant.photo_link" id="photo" type="text" class="validate">

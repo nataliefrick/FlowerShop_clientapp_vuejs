@@ -1,7 +1,8 @@
 <template>
     <div class="card">
         <div class="card-image">
-            <img :src="'../src/assets/img/'+plant.photo_link" /><!-- works -->
+            <img :src="'/img/'+plant.photo_link" /><!-- works in dev -->
+            <!-- <img :src="'../src/assets/img/'+plant.photo_link" />works in dev -->
             <!-- <img :src="'../assets/img/'+plant.photo_link" /> doesnt work -->
             <!-- <img :src="'@../assets/img/'+plant.photo_link" /> doesnt work -->
             <!-- <img :src="'@./assets/img/'+plant.photo_link" /> doesnt work -->
