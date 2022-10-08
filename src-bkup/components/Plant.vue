@@ -1,11 +1,10 @@
 <template>
     <div class="card">
         <div class="card-image">
-            <img :src="'../src/assets/img/'+plant.photo_link" /><!-- works -->
-            <!-- <img :src="'../assets/img/'+plant.photo_link" /> doesnt work -->
-            <!-- <img :src="'@../assets/img/'+plant.photo_link" /> doesnt work -->
-            <!-- <img :src="'@./assets/img/'+plant.photo_link" /> doesnt work -->
-            <!-- <img src="../assets/img/gallery1.jpg"> works -->
+            <!-- <img :src="'src/assets/img/'+plant.photo_link" /> -->
+            <!-- <img :src="'../assets/img/'+plant.photo_link" /> -->
+            <!-- <img :src="'@./assets/img/'+plant.photo_link" /> -->
+            <img src="@./assets/img/gallery1.jpg">
         </div>
         <span class="card-title green-text text-darken-2 flex-box-wrap">{{plant.title}}</span>
         <p class="small-text truncate">{{plant.description}}</p>
