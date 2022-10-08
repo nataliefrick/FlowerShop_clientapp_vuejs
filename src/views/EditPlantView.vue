@@ -23,7 +23,7 @@
                             <input v-model="plant.price" id="price" type="text" class="validate">
                         </div>
                     </div>
-
+<!-- .input-field > label:not(.label-icon).active -->
                         <div class="input-field col s6">
                             <textarea class="materialize-textarea" v-model="plant.description" id="description" rows="10"></textarea>
                             <label class="shift-right" for="description">Description</label>
