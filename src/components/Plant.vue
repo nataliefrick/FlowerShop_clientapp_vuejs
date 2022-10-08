@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-image">
             <!-- <RouterLink to="'/plant'+{{plant.id}}'"> -->
-                <img :src="'src/assets/img/'+plant.photo_link" />
+                <img :src="'/assets/img/'+plant.photo_link" />
             <!-- </RouterLink> -->
         </div>
         <span class="card-title green-text text-darken-2 flex-box-wrap">{{plant.title}}</span>
