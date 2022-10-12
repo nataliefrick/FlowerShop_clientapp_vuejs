@@ -10,7 +10,7 @@
             <form>
                 <div class="row">
                     <div class="col search">
-                        <input type="text" class="search" placeholder="Search">
+                        <input type="text" v-model="input" class="search" placeholder="Search">
                     </div>
                     <div class="col">
                         <button class="btn-large waves-effect waves-light right green white-text" type="submit" name="action"><span class="material-icons justify-middle">search</span></button>
@@ -22,6 +22,10 @@
 
     <div class="container">
         <div class="section flex-box-wrap">
+            <!-- <Plant @deletePlant="deletePlant(plant.id)" @updatePlant="updatePlant(plant.id)" v-for="plant in filteredList(input)" :plant="plant" :key="plant.id" />
+            <div class="item error" v-if="input&&!filteredList().length">
+                <p>No results found!</p>
+            </div> -->
             <Plant @deletePlant="deletePlant(plant.id)" @updatePlant="updatePlant(plant.id)" v-for="plant in plants" :plant="plant" :key="plant.id" />
         </div>
     </div>
@@ -64,7 +68,8 @@ export default {
     data() {
         return {
             plants: [],
-            errorMessage : null
+            errorMessage : null,
+            input : null
         }
     },
     created : async function() {
@@ -79,6 +84,11 @@ export default {
         Plant
     },
     methods: {
+        // async filteredList(input) {
+        //     return this.plants.filter((plant) =>
+        //     plant.toString().toLowerCase().includes(input.value.toLowerCase())
+        //     );
+        // },
         async getPlants() {
             const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants");
 
