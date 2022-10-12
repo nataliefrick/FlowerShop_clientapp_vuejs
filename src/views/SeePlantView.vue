@@ -42,7 +42,7 @@ export default {
     },
     methods: {
         async getPlant(id) {
-            // console.log(this.id);
+            console.log(this.id);
             const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants/"+this.id);
 
             const data = await response.json(); // save the data in sent through the response.

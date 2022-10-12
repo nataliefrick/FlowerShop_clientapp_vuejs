@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../../ninaplesner.com"
+		},
+		{
+			"path": "../../../../../.."
+		},
+		{
+			"path": "../../../../../../../../../Downloads/themeforest-gW46kK5K-bridge-creative-multipurpose-wordpress-theme-wordpress-theme/bridge"
+		},
+		{
+			"path": "../../../../.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "MIUN",
+		"git.ignoreLimitWarning": true
+	}
+}
