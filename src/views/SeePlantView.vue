@@ -3,7 +3,7 @@
 
     <div class="container">
         <div class="section">
-            <div class="card">
+            <div class="card nohover">
                 <div class="row">
                     <div class="col s8">
                         <h4 class="green-text lighten-2">{{this.plant.title}}</h4>
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div>
-                <RouterLink class="waves-effect waves-light btn green white-text e-margins" to="/catalog"><i class="material-icons left">arrow_back</i>Back</RouterLink>
+                <RouterLink class="waves-effect waves-light btn green white-text e-margins" to="/catalog"><i class="material-icons left">arrow_back</i>Catalog</RouterLink>
 
                 <RouterLink class="waves-effect waves-light btn green white-text e-margins" :to="'/edit/'+this.plant.id"><span class="material-icons extra-space left">create</span>Edit</RouterLink>
 

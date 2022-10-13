@@ -2,11 +2,11 @@
     <div class="card">
         <div class="card-image">
             <img :src="'/img/'+plant.photo_link" /><!-- works in dev -->
-            <!-- <img :src="'../src/assets/img/'+plant.photo_link" />works in dev -->
-            <!-- <img :src="'../assets/img/'+plant.photo_link" /> doesnt work -->
-            <!-- <img :src="'@../assets/img/'+plant.photo_link" /> doesnt work -->
-            <!-- <img :src="'@./assets/img/'+plant.photo_link" /> doesnt work -->
-            <!-- <img src="../assets/img/gallery1.jpg"> works -->
+<!-- <img :src="'../src/assets/img/'+plant.photo_link" />works in dev -->
+<!-- <img :src="'../assets/img/'+plant.photo_link" /> doesnt work -->
+<!-- <img :src="'@../assets/img/'+plant.photo_link" /> doesnt work -->
+<!-- <img :src="'@./assets/img/'+plant.photo_link" /> doesnt work -->
+<!-- <img src="../assets/img/gallery1.jpg"> works -->
         </div>
         <span class="card-title green-text text-darken-2 flex-box-wrap">{{plant.title}}</span>
         <p class="small-text truncate">{{plant.description}}</p>

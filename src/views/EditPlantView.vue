@@ -23,20 +23,26 @@
                             <input v-model="plant.price" id="price" type="text" class="validate">
                         </div>
                     </div>
-<!-- .input-field > label:not(.label-icon).active -->
-                        <div class="input-field col s6">
-                            <textarea class="materialize-textarea" v-model="plant.description" id="description" rows="10"></textarea>
-                            <label class="shift-right" for="description">Description</label>
 
-                            <input v-model="plant.quantity" id="quantity" type="text" class="validate">
-                        <label class="shift" for="quantity">Stock Quantity</label>
-                        </div>
+                    <div class="input-field col s6">
+                        <textarea class="materialize-textarea" v-model="plant.description" id="description" rows="10"></textarea>
+                        <label class="shift-right" for="description">Description</label>
+
+                        <input v-model="plant.quantity" id="quantity" type="text" class="validate">
+                    <label class="shift" for="quantity">Stock Quantity</label>
                     </div>
+                </div>
 
 
-                    <button class="btn waves-effect waves-light right green" type="submit" name="action">Save<i class="material-icons right">save</i>
+                <button class="btn waves-effect waves-light right green" type="submit" name="action">Save<i class="material-icons right">save</i>
+                </button>
+                <!-- Message Printout -->
+                <div v-if="savedMessage"><p class="green-msg">{{savedMessage}}</p><RouterLink :to="'/view/'+plant.id">
+                    <button class="btn waves-effect waves-light right green" type="submit" name="action">View Changes<i class="material-icons right">pageview</i>
                     </button>
-                </form>
+                    </RouterLink>
+                </div>
+            </form>
     </div>
             </div>
         </div>
@@ -46,22 +52,13 @@
 
 
 
-<script>
-// export default {
-//         components: {
-//             Form
-//         },
-//         emits: ["addPlant"],
-//         mounted() {
-//             this.getPlants();
-//         }
-//     }
-   
+<script>  
 export default {
     data() {
         return {
             plant: [],
-            id: this.$route.params.id
+            id: this.$route.params.id,
+            savedMessage : null
         }
     },
     emits: ["updatePlant"],
@@ -78,8 +75,8 @@ export default {
         async updatePlant(plant, id) {
             // check first for content
             // if(plant.title.length > 4 ) {
-                // console.log(id);
-                // console.log(plant);
+                console.log(id);
+                console.log(plant);
                 let plantBody = {
                     title: plant.title, 
                     description: plant.description, 
@@ -102,8 +99,9 @@ export default {
                 const data = await response.json();
 
                
-                // this.$emit("updatePlant"); // reloads the parent page.
-                window.location.href = "/view/"+this.id;
+                this.$emit("updatePlant"); // reloads the parent page.
+                //window.location.href = "/view/"+this.id;
+                this.savedMessage = "Updates saved!";
             }
 
         // }
@@ -115,6 +113,15 @@ export default {
 </script>
 
 <style scoped>
+.green-msg {
+    color:#4CAF50;
+    padding-right: 8em;
+}
+
+p.green-msg {
+    text-align: right;
+    padding-right: 8em;
+}
 
 .padding {
     padding: 2em;

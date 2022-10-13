@@ -227,6 +227,10 @@ div.card:hover {
   border:1px solid #4CAF50;
 }
 
+div.card.nohover:hover {
+  border:0;
+}
+
 .small-text {
   font-size: 0.8em;
   padding: 0 1em;
