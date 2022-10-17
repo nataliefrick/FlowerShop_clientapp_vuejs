@@ -10,7 +10,7 @@
             <input id="email" v-model="email" type="text" class="validate">
             <label for="email">Email</label>
           </div>
-
+          <p><RouterLink class="white-text" to="/register">Register</RouterLink></p>
           <div class="input-field">
             <input  id="password" v-model="password" type="text" class="validate">
             <label for="password">Password</label>
