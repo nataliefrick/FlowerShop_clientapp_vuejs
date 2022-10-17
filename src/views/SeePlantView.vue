@@ -23,9 +23,9 @@
 
                 <button class="waves-effect waves-light btn green white-text e-margins" @click="deletePlant(this.plant.id)"><span class="material-icons extra-space left">delete</span>Delete</button>
             </div>
-        </div>     
+        </div>
     </div>
-          
+
 
 </template>
 
@@ -42,21 +42,28 @@ export default {
     },
     methods: {
         async getPlant(id) {
-            console.log(this.id);
-            const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants/"+this.id);
+            const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants/"+this.id, {
+                method: "GET",
+                headers: {
+                    "Accept" :  "application/json",
+                    "Content-type" : "application/json"
+                    // "Authorization" : "Bearer " + token
+                }
+            });
 
             const data = await response.json(); // save the data in sent through the response.
 
             this.plant = data;
-            console.log(data);
+            // console.log(data);
         },
         async deletePlant(id) {
-            console.log(id);
+            // console.log(id);
             const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants/"+this.id, {
                 method: "DELETE",
-                headers: { 
+                headers: {
                     "Accept" :  "application/json",
-                    "Content-type" : "application/json" 
+                    "Content-type" : "application/json"
+                    // "Authorization" : "Bearer " + token
                 }
             });
             // const data = await response.json;

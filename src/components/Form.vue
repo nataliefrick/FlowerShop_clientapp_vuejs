@@ -50,6 +50,7 @@
         emits: ["addPlant"],
         methods: {
             async addPlant() {
+                
                 // check first for content
                 if(this.title.length > 4 ) {
                     let plantBody = {

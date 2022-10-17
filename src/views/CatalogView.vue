@@ -69,12 +69,19 @@ export default {
         return {
             plants: [],
             errorMessage : null,
-            input : null
+            input : null,
+            token: localStorage.getItem('token')
         }
     },
     created : async function() {
         try {
-            this.getPlants();
+            if (localStorage.getItem('token') === null) {
+                this.$router.push('/login');
+            } else {
+                console.log(localStorage.getItem('user'));
+                console.log(localStorage.getItem('token'));
+                this.getPlants();
+            }
         }
         catch (error) {
             this.errorMessage = error;
@@ -90,7 +97,14 @@ export default {
         //     );
         // },
         async getPlants() {
-            const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants");
+            const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants", {
+                method: "GET",
+                headers: {
+                    "Accept" :  "application/json",
+                    "Content-type" : "application/json",
+                    "Authorization" : "Bearer " + localStorage.getItem('token')
+                }
+            });
 
             const data = await response.json(); // save the data in sent through the response.
 
@@ -101,7 +115,8 @@ export default {
                 method: "DELETE",
                 headers: { 
                     "Accept" :  "application/json",
-                    "Content-type" : "application/json" 
+                    "Content-type" : "application/json",
+                    "Authorization" : "Bearer " + localStorage.getItem('token')
                 }
             });
             const data = await response.json;
@@ -109,17 +124,7 @@ export default {
             this.getPlants();
         },
         async updatePlant(id) {
-            // console.log(id);
-            // const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants/" + id, {
-            //     method: "GET",
-            //     headers: { 
-            //         "Accept" :  "application/json",
-            //         "Content-type" : "application/json" 
-            //     }
-            // });
-            // const data = await response.json;
             window.location.href = "/update/"+id;
-            // this.getPlants();
         }
     },
     mounted() {

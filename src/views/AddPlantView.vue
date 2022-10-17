@@ -24,7 +24,7 @@ export default {
     components: {
         Form
     },
-    emits: ["addPlant"],
+    emits: ["addPlant"]
     // mounted() {
     //     this.getPlants();
     // }

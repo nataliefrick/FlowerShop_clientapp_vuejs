@@ -1,5 +1,5 @@
 <template>
-   <Header />
+   <Header @logout-user="logoutUser"/>
    <main>
        <RouterView />
     </main>
@@ -22,6 +22,28 @@ export default {
         Header,
         RouterView,
         Footer
+    },
+    methods: {
+        async logoutUser() {
+            const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/logout",  {
+                method: "POST",
+                headers: { 
+                    "Accept" :  "application/json",
+                    "Content-type" : "application/json",
+                    "Authorization" : "Bearer " + localStorage.getItem('token')
+                },
+            })
+
+            const data = await response.json();
+            
+            window.localStorage.setItem('token', "");
+            window.localStorage.setItem('recievedMessage', "");
+            window.localStorage.setItem('user', "");
+
+            this.$emit("logoutUser"); // reloads the parent page.
+            window.location.href = "/login";
+        }
+
     },
     mounted () {
         M.AutoInit()

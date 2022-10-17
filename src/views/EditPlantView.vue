@@ -58,13 +58,12 @@ export default {
         return {
             plant: [],
             id: this.$route.params.id,
-            savedMessage : null
+            savedMessage : null,
         }
     },
     emits: ["updatePlant"],
     methods: {
         async getPlant(id) {
-            // console.log(this.id);
             const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants/"+id);
 
             const data = await response.json(); // save the data in sent through the response.
@@ -74,9 +73,9 @@ export default {
         },
         async updatePlant(plant, id) {
             // check first for content
-            // if(plant.title.length > 4 ) {
-                console.log(id);
-                console.log(plant);
+            if(plant.title.length > 4 ) {
+                // console.log(id);
+                // console.log(plant);
                 let plantBody = {
                     title: plant.title, 
                     description: plant.description, 
@@ -91,7 +90,8 @@ export default {
                     method: "PUT",
                     headers: { 
                         "Accept" :  "application/json",
-                        "Content-type" : "application/json" 
+                        "Content-type" : "application/json"
+                        // "Authorization" : "Bearer " + token 
                     },
                     body: JSON.stringify(plantBody)
                 });
@@ -104,7 +104,7 @@ export default {
                 this.savedMessage = "Updates saved!";
             }
 
-        // }
+        }
     },
     mounted() {
         this.getPlant(this.id);
