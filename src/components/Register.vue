@@ -26,6 +26,7 @@
           <button class="btn waves-effect waves-light right green" type="submit" name="action">Register
               <i class="material-icons right">send</i>
           </button>
+          <RouterLink class="green-text register" to="/register">Login</RouterLink>
         </form>
       </div>
       <div class="section col s2 m4"></div>
@@ -45,6 +46,11 @@ div#login {
 h2.small {
     font-size: x-large;
 }
+a.register {
+  text-decoration: underline;
+  line-height: 36px;
+}
+
 
 </style>
 
@@ -91,6 +97,8 @@ export default {
                     },
                     body: JSON.stringify(userBody)
                 })
+
+
                 // .then(res => res.json())
                 // .then( data=> {
                 //     console.log(token);
@@ -100,6 +108,7 @@ export default {
                 const data = await response.json();
                 console.log(data);
                 console.log(data.message);
+                console.log(data.error);
                 console.log(data.token);
                 console.log(data.user.name);
                 
@@ -116,6 +125,7 @@ export default {
 
                 this.$emit("addUser"); // reloads the parent page.
                 // window.location.href = "/catalog";
+                this.$router.push('/catalog');
             }
 
         }

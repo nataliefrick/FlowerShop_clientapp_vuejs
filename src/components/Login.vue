@@ -3,14 +3,16 @@
 <div class="container" id="login">
     <h2 class="green-text small">Login to the site</h2>
     <div class="row">
-      <div class="section col s2 m4"></div>
-      <div class="section col s8 m4">
+
+      <div class="section col s12 m4"></div>
+
+      <div class="section col s8 m4 centered">
         <form @submit.prevent="loginUser()" class="col s12">
           <div class="input-field">
             <input id="email" v-model="email" type="text" class="validate">
             <label for="email">Email</label>
           </div>
-          <p><RouterLink class="white-text" to="/register">Register</RouterLink></p>
+
           <div class="input-field">
             <input  id="password" v-model="password" type="text" class="validate">
             <label for="password">Password</label>
@@ -19,9 +21,13 @@
           <button class="btn waves-effect waves-light right green" type="submit" name="action">Login
               <i class="material-icons right">send</i>
           </button>
+          <RouterLink class="green-text register" to="/register">Register an account</RouterLink>
         </form>
+        <!-- ErrorMessage Printout -->
+        <div v-if="recievedMessage"><p class="text-green recievedMessage">{{recievedMessage}} </p></div>
       </div>
-      <div class="section col s2 m4"></div>
+
+      <div class="section col s12 m4"></div>
     </div>
   </div>
 
@@ -33,11 +39,25 @@ export default {
         return {
             email:"",
             password:"",
+            recievedMessage: localStorage.getItem('recievedMessage'),
             errorMessage : null,
-            token: localStorage.getItem('token'),
+            token: null,
             user: null
         }
     },
+    emits: ["loggedin"],
+    // created : async function() {
+    //     try {
+    //       // console.log('storedUser & Token:');
+    //       // console.log(localStorage.getItem('user'));
+    //       // console.log(localStorage.getItem('token'));
+    //       this.loginUser();
+    //     }
+    //     catch (error) {
+    //         this.errorMessage = error;
+    //         console.log(this.errorMessage);
+    //     }
+    // },
     methods: {
         async loginUser() {
             // check first for content
@@ -48,8 +68,8 @@ export default {
                 };
 
                 // console.log(JSON.stringify(userBody));
-
-                const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/login",  {
+                try {
+                  const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/login",  {
                     method: "POST",
                     headers: { 
                         "Accept" :  "application/json",
@@ -57,29 +77,62 @@ export default {
                     },
                     body: JSON.stringify(userBody)
                 })
-                // .then(res => res.json())
-                // .then( data=> {
-                //     console.log(token);
-                // })
-                // .catch(err => console.log(error));
 
                 const data = await response.json();
+
+
                 console.log(data);
-                console.log(data.message);
-                console.log(data.token);
+                window.localStorage.setItem('recievedMessage', data.message);
+                if (data.message === "Oops, something went wrong, please try again"){
+                  window.localStorage.setItem('recievedMessage', data.error.email);
+                }
+
+                // console.log(recievedMessage);
+                console.log(response.status);
+                if(response.status === 200) {
+                  window.localStorage.setItem('token', data.token);
+                  window.localStorage.setItem('user', data.user.name);
+                  console.log(localStorage.getItem('user'));
+                  this.$emit("loggedin");
+                  // this.$forceUpdate('/catalog');
+                  this.$router.push('/catalog');
+                  // this.$forceUpdate()
+                  // window.location.href = "catalog";
+                }
+
+                // if (response.status != 200) {
+                //    throw (response.status);
+                // }
+
+                // window.localStorage.setItem('recievedMessage', data.message);
+
+
+                // if (response.status === 401) {
+                //   this.$router.push('/login');
+                // } 
                 
                 // empty form
                 this.email = "";
                 this.password = "";
-                
-                window.localStorage.setItem('token', data.token);
-                window.localStorage.setItem('recievedMessage', data.message);
-                window.localStorage.setItem('user', data.user.name);
-                // let token_ls = localStorage.getItem('token');
-                // console.log(token_ls);
+              } 
+              catch (error) {
+                this.errorMessage = error;
+                console.log(this.errorMessage);
+                // this.$router.push('/login');
+                // window.location.href = "/login";
+              }
 
-                this.$emit("loginUser"); // reloads the parent page.
-                window.location.href = "/catalog";
+
+              
+
+
+                // let token_ls = localStorage.getItem('token');
+                // console.log(data.user);
+
+                // this.$emit("loginUser"); // reloads the parent page.
+
+                //https://www.youtube.com/watch?v=GRhkhSzyApc
+                
             } 
 
         }
@@ -94,8 +147,27 @@ div#login {
     text-align: center;
 }
 
+.col.centered,
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 h2.small {
     font-size: x-large;
+}
+
+a.register {
+  text-decoration: underline;
+  line-height: 36px;
+  font-size: small;
+}
+
+.recievedMessage {
+  font-style: italic;
+  font-size: smaller;
+  margin-top: 1em;
+  line-height: 74px;
 }
 
 </style>

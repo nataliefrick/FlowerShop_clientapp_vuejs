@@ -54,6 +54,7 @@
 
 <script>  
 export default {
+
     data() {
         return {
             plant: [],
@@ -62,9 +63,31 @@ export default {
         }
     },
     emits: ["updatePlant"],
+    created : async function() {
+        try {
+            if (localStorage.getItem('token') === null) {
+                this.$router.push('/login');
+            } else {
+                console.log(localStorage.getItem('user'));
+                console.log(localStorage.getItem('token'));
+                this.getPlant(id);
+            }
+        }
+        catch (error) {
+            this.errorMessage = error;
+        }
+    },
     methods: {
         async getPlant(id) {
-            const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants/"+id);
+            // console.log(id);
+            const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants/"+this.id, {
+                method: "GET",
+                headers: {
+                    "Accept" :  "application/json",
+                    "Content-type" : "application/json",
+                    "Authorization" : "Bearer " + localStorage.getItem('token')
+                }
+            });
 
             const data = await response.json(); // save the data in sent through the response.
 
@@ -90,8 +113,8 @@ export default {
                     method: "PUT",
                     headers: { 
                         "Accept" :  "application/json",
-                        "Content-type" : "application/json"
-                        // "Authorization" : "Bearer " + token 
+                        "Content-type" : "application/json",
+                        "Authorization" : "Bearer " + localStorage.getItem('token') 
                     },
                     body: JSON.stringify(plantBody)
                 });

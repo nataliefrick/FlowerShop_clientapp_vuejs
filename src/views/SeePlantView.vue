@@ -36,9 +36,20 @@ export default {
             plant: [],
             id : this.$route.params.id
         }
-    },
-    props: {
-        plant: Object
+    },  
+    created : async function() {
+        try {
+            if (localStorage.getItem('token') === null) {
+                this.$router.push('/login');
+            } else {
+                console.log(localStorage.getItem('user'));
+                console.log(localStorage.getItem('token'));
+                this.getPlant(id);
+            }
+        }
+        catch (error) {
+            this.errorMessage = error;
+        }
     },
     methods: {
         async getPlant(id) {
@@ -46,8 +57,8 @@ export default {
                 method: "GET",
                 headers: {
                     "Accept" :  "application/json",
-                    "Content-type" : "application/json"
-                    // "Authorization" : "Bearer " + token
+                    "Content-type" : "application/json",
+                    "Authorization" : "Bearer " + localStorage.getItem('token')
                 }
             });
 
@@ -62,13 +73,13 @@ export default {
                 method: "DELETE",
                 headers: {
                     "Accept" :  "application/json",
-                    "Content-type" : "application/json"
-                    // "Authorization" : "Bearer " + token
+                    "Content-type" : "application/json",
+                    "Authorization" : "Bearer " + localStorage.getItem('token')
                 }
             });
             // const data = await response.json;
 
-            window.location.href = "/catalog";
+            this.$router.push('/catalog');
         }
     },
     mounted() {

@@ -71,10 +71,16 @@ a.green:hover {
                 user: localStorage.getItem('user')
             }
         }
+
+            // ,
+            // reloadonLogin() { this.$router.go(0);}
+        }
+        
+        
         // ,
         // emits: ["loutoutUSer"]
         
-    }
+    
 
     
 

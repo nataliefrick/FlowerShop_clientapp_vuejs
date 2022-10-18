@@ -3,25 +3,14 @@
 </template>
 
 <script>
-    import Login from "../components/Login.vue";
-    export default {
-        components: {
-            Login
-        },
-        emits: ["login"],
-        // methods: {
-        //     async login() {
-        //         const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/login");
-    
-        //         const loginData = await response.json(); // save the data in sent through the response.
-    
-        //         this.plants = plantsData;
-        //         }            
-        // },
-        // mounted() {
-        //     this.login(); 
-        // }
-    }
+import Login from "../components/Login.vue";
+export default {
+    components: {
+        Login
+    },
+    emits: ["loggedin"]
+
+}
 </script>
 
 
@@ -39,6 +28,11 @@
         margin-right: auto;
         border-radius: 60px;
     }
+
+    a.register {
+        text-decoration: underline;
+        line-height: 36px;
+        }
 
     @media only screen and (max-width: 600px) {
         .center-element {

@@ -80,6 +80,7 @@ export default {
             } else {
                 console.log(localStorage.getItem('user'));
                 console.log(localStorage.getItem('token'));
+                // this.forcesUpdateComponent();
                 this.getPlants();
             }
         }
@@ -125,7 +126,13 @@ export default {
         },
         async updatePlant(id) {
             window.location.href = "/update/"+id;
-        }
+        },
+        async forcesUpdateComponent() {
+                // force re-render
+                console.log("force rerender");
+                this.$forceUpdate(0);
+                this.$emit("loggedin");
+            }
     },
     mounted() {
         this.getPlants();

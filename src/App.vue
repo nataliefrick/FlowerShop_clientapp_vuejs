@@ -1,5 +1,5 @@
 <template>
-   <Header @logout-user="logoutUser"/>
+   <Header @loggedin="forcesUpdateComponent()" @logout-user="logoutUser"/>
    <main>
        <RouterView />
     </main>
@@ -17,7 +17,14 @@ import Header from "./components/Header.vue"
 import Footer from "./components/Footer.vue"
 import M from 'materialize-css'
 
+
 export default {
+    data() {
+        return {
+            errorMessage : null,
+            recievedMessage: null
+        }
+    },
     components: {
         Header,
         RouterView,
@@ -42,7 +49,13 @@ export default {
 
             this.$emit("logoutUser"); // reloads the parent page.
             window.location.href = "/login";
-        }
+        },
+        async forcesUpdateComponent() {
+                // force re-render
+                console.log("force rerender");
+                this.$forceUpdate();
+                this.$emit("loggedin");
+            }
 
     },
     mounted () {

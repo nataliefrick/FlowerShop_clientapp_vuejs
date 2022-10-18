@@ -11,13 +11,18 @@
 <script>
 import Register from "../components/Register.vue";
 export default {
-    // data: {
-    //  recievedMessage: localStorage.getItem('recievedMessage')
-    // },
     components: {
         Register
     },
-    emits: ["addUser"]
+    emits: ["addUser"],
+    created : async function() {
+        try {
+            this.addUser();
+        }
+        catch (error) {
+            this.errorMessage = error;
+        }
+    },
 }
 
 </script>
