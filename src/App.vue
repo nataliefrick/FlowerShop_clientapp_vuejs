@@ -48,7 +48,8 @@ export default {
             window.localStorage.setItem('user', "");
 
             this.$emit("logoutUser"); // reloads the parent page.
-            window.location.href = "/login";
+            // window.location.href = "/login"; // this initiates a hard reload but causes broken links in netifly
+            this.$router.push('/login'); // does not cause broken link but no hard reload to reset local values.
         },
         async forcesUpdateComponent() {
                 // force re-render

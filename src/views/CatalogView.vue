@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="section">
-            <h4 class="green-text lighten-2">Plant Catalog 
+            <h4 class="green-text lighten-2">Plant Catalog
                 <RouterLink class="waves-effect waves-light btn-small green white-text" to="/add"><i class="material-icons left">add_circle_outline</i>New</RouterLink>
             </h4>
             <p class="light">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo reprehenderit atque obcaecati, saepe reiciendis quos neque consequatur accusamus inventore ab ad.</p>
@@ -36,7 +36,7 @@
         border: 1px solid #9e9e9e;
         padding-left: 5px;
     }
-    
+
     .justify-middle {
         line-height: 45px;
     }
@@ -60,8 +60,8 @@
 
 </style>
 
-
-
+<!-- https://bobbyhadz.com/blog/javascript-get-response-status-code-fetch -->
+<!-- https://michaelnthiessen.com/force-re-render/ -->
 <script>
 import Plant from "../components/Plant.vue";
 export default {
@@ -114,7 +114,7 @@ export default {
         async deletePlant(id) {
             const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants/" + id, {
                 method: "DELETE",
-                headers: { 
+                headers: {
                     "Accept" :  "application/json",
                     "Content-type" : "application/json",
                     "Authorization" : "Bearer " + localStorage.getItem('token')
