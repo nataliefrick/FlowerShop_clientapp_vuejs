@@ -9,12 +9,14 @@
             <div v-if="errorMessage"><p class="red">{{errorMessage}} </p></div>
             <form>
                 <div class="row">
+                    <form @submit.prevent="filteredList()">
                     <div class="col search">
-                        <input type="text" v-model="input" class="search" placeholder="Search">
+                        <input type="text" v-model="searchTerm" class="search" placeholder="Search">
                     </div>
                     <div class="col">
-                        <button class="btn-large waves-effect waves-light right green white-text" type="submit" name="action"><span class="material-icons justify-middle">search</span></button>
+                        <button class="btn-large waves-effect waves-light right green white-text" type="submit" name="action" @click="$emit('filteredList')"><span class="material-icons justify-middle">search</span></button>
                     </div>
+                    </form>
                 </div>
             </form>
         </div>
@@ -22,11 +24,12 @@
 
     <div class="container">
         <div class="section flex-box-wrap">
-            <!-- <Plant @deletePlant="deletePlant(plant.id)" @updatePlant="updatePlant(plant.id)" v-for="plant in filteredList(input)" :plant="plant" :key="plant.id" />
-            <div class="item error" v-if="input&&!filteredList().length">
-                <p>No results found!</p>
-            </div> -->
             <Plant @deletePlant="deletePlant(plant.id)" @updatePlant="updatePlant(plant.id)" v-for="plant in plants" :plant="plant" :key="plant.id" />
+
+            <div class="item error" v-if="searchTerm&&!filteredList().length">
+                <p>No results found!</p>
+            </div>
+
         </div>
     </div>
 </template>
@@ -69,8 +72,9 @@ export default {
         return {
             plants: [],
             errorMessage : null,
-            input : null,
-            token: localStorage.getItem('token')
+            searchTerm : "",
+            token: localStorage.getItem('token'),
+            urlGet: "https://arcane-hamlet-64136.herokuapp.com/api/plants"
         }
     },
     created : async function() {
@@ -78,10 +82,12 @@ export default {
             if (localStorage.getItem('token') === null) {
                 this.$router.push('/login');
             } else {
+                // console.log("search: " + searchTerm);
                 console.log(localStorage.getItem('user'));
                 console.log(localStorage.getItem('token'));
                 // this.forcesUpdateComponent();
                 this.getPlants();
+                // this.filteredList(searchTerm);
             }
         }
         catch (error) {
@@ -91,13 +97,32 @@ export default {
     components: {
         Plant
     },
+    // emits: ["filtered-list"],
     methods: {
-        // async filteredList(input) {
-        //     return this.plants.filter((plant) =>
-        //     plant.toString().toLowerCase().includes(input.value.toLowerCase())
-        //     );
-        // },
+        async filteredList() {
+            if(!this.searchTerm) {this.getPlants();} 
+            else {
+            console.log(this.searchTerm);
+
+            const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants/search/" + this.searchTerm, {
+                method: "GET",
+                headers: {
+                    "Accept" :  "application/json",
+                    "Content-type" : "application/json",
+                    "Authorization" : "Bearer " + localStorage.getItem('token')
+                }
+            });
+
+            const data = await response.json(); // save the data in sent through the response.
+
+            this.plants = data;
+            // empty form
+            this.searchTerm = "";
+            this.$emit("fileredList"); // reloads the parent page.
+            }
+        },
         async getPlants() {
+            // console.log("getPlants" + urlGet);
             const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants", {
                 method: "GET",
                 headers: {
@@ -132,7 +157,7 @@ export default {
                 console.log("force rerender");
                 this.$forceUpdate(0);
                 this.$emit("loggedin");
-            }
+        }
     },
     mounted() {
         this.getPlants();

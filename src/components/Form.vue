@@ -2,15 +2,15 @@
     <div class="row">
         <form @submit.prevent="addPlant()" class="col s12">
             <div class="row">
-            <div class="input-field col s6">
-                <input v-model="title" id="plantname" type="text" class="validate">
-                <label for="plantname">Name of Plant</label>
-            </div>
+                <div class="input-field col s6">
+                    <input v-model="title" id="plantname" type="text" class="validate">
+                    <label for="plantname">Name of Plant</label>
+                </div>
 
-            <div class="input-field col s6">
-                <input v-model="description" id="description" type="text" class="validate">
-                <label for="description">Description</label>
-            </div>
+                <div class="input-field col s6">
+                    <input v-model="description" id="description" type="text" class="validate">
+                    <label for="description">Description</label>
+                </div>
             </div>
 
             <div class="row">
@@ -50,7 +50,6 @@
         emits: ["addPlant"],
         methods: {
             async addPlant() {
-                
                 // check first for content
                 if(this.title.length > 4 ) {
                     let plantBody = {
