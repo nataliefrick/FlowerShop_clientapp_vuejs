@@ -62,13 +62,9 @@ a.green:hover {
             }
         }
 
-            // ,
-            // reloadonLogin() { this.$router.go(0);}
+
         }
         
-        
-        // ,
-        // emits: ["loutoutUSer"]
         
     
 

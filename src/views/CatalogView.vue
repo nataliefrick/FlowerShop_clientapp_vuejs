@@ -6,7 +6,7 @@
             </h4>
             <p class="light">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo reprehenderit atque obcaecati, saepe reiciendis quos neque consequatur accusamus inventore ab ad.</p>
             <!-- ErrorMessage Printout -->
-            <div v-if="errorMessage"><p class="red">{{errorMessage}} </p></div>
+            <!-- <div v-if="errorMessage"><p class="red">{{errorMessage}} </p></div> -->
             <form>
                 <div class="row">
                     <form @submit.prevent="filteredList()">
@@ -26,10 +26,8 @@
         <div class="section flex-box-wrap">
             <Plant @deletePlant="deletePlant(plant.id)" @updatePlant="updatePlant(plant.id)" v-for="plant in plants" :plant="plant" :key="plant.id" />
 
-            <div class="item error" v-if="searchTerm&&!filteredList().length">
-                <p>No results found!</p>
-            </div>
-
+            <!-- ErrorMessage Printout -->
+            <div v-if="errorMessage"><p class="errormsg green-text">{{errorMessage}} </p></div>
         </div>
     </div>
 </template>
@@ -61,6 +59,11 @@
         color: white;
     }
 
+    .errormsg {
+        text-align: center;
+        font-style: italic;
+    }
+
 </style>
 
 <!-- https://bobbyhadz.com/blog/javascript-get-response-status-code-fetch -->
@@ -82,12 +85,9 @@ export default {
             if (localStorage.getItem('token') === null) {
                 this.$router.push('/login');
             } else {
-                // console.log("search: " + searchTerm);
                 console.log(localStorage.getItem('user'));
                 console.log(localStorage.getItem('token'));
-                // this.forcesUpdateComponent();
                 this.getPlants();
-                // this.filteredList(searchTerm);
             }
         }
         catch (error) {
@@ -100,9 +100,10 @@ export default {
     // emits: ["filtered-list"],
     methods: {
         async filteredList() {
-            if(!this.searchTerm) {this.getPlants();} 
-            else {
-            console.log(this.searchTerm);
+            this.errorMessage = "";
+            // if(this.searchTerm = "") { this.getPlants(); } 
+            // else {
+            // console.log(this.searchTerm);
 
             const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants/search/" + this.searchTerm, {
                 method: "GET",
@@ -114,12 +115,15 @@ export default {
             });
 
             const data = await response.json(); // save the data in sent through the response.
-
+            if(data.length===0) {
+                this.errorMessage = "No results found!";
+            } 
             this.plants = data;
+            
             // empty form
-            this.searchTerm = "";
-            this.$emit("fileredList"); // reloads the parent page.
-            }
+            // this.searchTerm = "";
+            // this.$emit("fileredList"); // reloads the parent page.
+            
         },
         async getPlants() {
             // console.log("getPlants" + urlGet);

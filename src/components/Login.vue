@@ -46,18 +46,19 @@ export default {
         }
     },
     emits: ["loggedin"],
-    // created : async function() {
-    //     try {
-    //       // console.log('storedUser & Token:');
-    //       // console.log(localStorage.getItem('user'));
-    //       // console.log(localStorage.getItem('token'));
-    //       this.loginUser();
-    //     }
-    //     catch (error) {
-    //         this.errorMessage = error;
-    //         console.log(this.errorMessage);
-    //     }
-    // },
+    created : async function() {
+        try {
+          // console.log('storedUser & Token:');
+          // console.log(localStorage.getItem('user'));
+          // console.log(localStorage.getItem('token'));
+          this.loginUser();
+        }
+        catch (error) {
+            this.errorMessage = error;
+            window.localStorage.setItem('recievedMessage', error);
+            console.log(this.errorMessage);
+        }
+    },
     methods: {
         async loginUser() {
             // check first for content
@@ -95,21 +96,21 @@ export default {
                   console.log(localStorage.getItem('user'));
                   this.$emit("loggedin");
                   // this.$forceUpdate('/catalog');
-                  this.$router.push('/catalog');
-                  // this.$forceUpdate()
-                  // window.location.href = "catalog";
+                  // this.$router.push('/catalog');
+                  window.location.href = "/catalog";
                 }
 
-                // if (response.status != 200) {
-                //    throw (response.status);
-                // }
+                if (response.status != 200) {
+                   throw (response.status);
+                }
 
-                // window.localStorage.setItem('recievedMessage', data.message);
+                window.localStorage.setItem('recievedMessage', data.message);
 
 
-                // if (response.status === 401) {
-                //   this.$router.push('/login');
-                // } 
+                if (response.status === 401) {
+                  // this.$router.push('/login');
+                  window.location.href = "/login";
+                } 
                 
                 // empty form
                 this.email = "";
