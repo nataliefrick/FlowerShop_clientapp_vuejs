@@ -60,13 +60,14 @@
                         quantity: this.quantity
                     };
 
-                    console.log(JSON.stringify(plantBody));
+                    // console.log(JSON.stringify(plantBody));
 
                     const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants",  {
                         method: "POST",
                         headers: { 
                             "Accept" :  "application/json",
-                            "Content-type" : "application/json" 
+                            "Content-type" : "application/json",
+                            "Authorization" : "Bearer " + localStorage.getItem('token')  
                         },
                         body: JSON.stringify(plantBody)
                     });
