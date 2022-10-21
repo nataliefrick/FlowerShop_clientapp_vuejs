@@ -4,7 +4,7 @@
     <h2 class="green-text small">Login to the site</h2>
     <div class="row">
 
-      <div class="section col s12 m4"></div>
+      <div class="section col s2 m4"></div>
 
       <div class="section col s8 m4 centered">
         <form @submit.prevent="loginUser()" class="col s12">
@@ -27,7 +27,7 @@
         <div v-if="recievedMessage"><p class="text-green recievedMessage">{{recievedMessage}} </p></div>
       </div>
 
-      <div class="section col s12 m4"></div>
+      <div class="section col s2 m4"></div>
     </div>
   </div>
 
@@ -82,7 +82,7 @@ export default {
                 const data = await response.json();
 
 
-                console.log(data);
+                // console.log(data);
                 window.localStorage.setItem('recievedMessage', data.message);
                 if (data.message === "Oops, something went wrong, please try again"){
                   window.localStorage.setItem('recievedMessage', data.error.email);
@@ -95,7 +95,6 @@ export default {
                   window.localStorage.setItem('user', data.user.name);
                   console.log(localStorage.getItem('user'));
                   this.$emit("loggedin");
-                  // this.$forceUpdate('/catalog');
                   // this.$router.push('/catalog');
                   window.location.href = "/catalog";
                 }
