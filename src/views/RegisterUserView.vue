@@ -22,7 +22,7 @@ export default {
         catch (error) {
             this.errorMessage = error;
         }
-    },
+    }
 }
 
 </script>

@@ -2,11 +2,11 @@
     <div class="card">
         <div class="card-image">
             <img :src="'/img/'+plant.photo_link" /><!-- works in dev -->
-<!-- <img :src="'../src/assets/img/'+plant.photo_link" />works in dev -->
-<!-- <img :src="'../assets/img/'+plant.photo_link" /> doesnt work -->
-<!-- <img :src="'@../assets/img/'+plant.photo_link" /> doesnt work -->
-<!-- <img :src="'@./assets/img/'+plant.photo_link" /> doesnt work -->
-<!-- <img src="../assets/img/gallery1.jpg"> works -->
+            <!-- <img :src="'../src/assets/img/'+plant.photo_link" />works in dev -->
+            <!-- <img :src="'../assets/img/'+plant.photo_link" /> doesnt work -->
+            <!-- <img :src="'@../assets/img/'+plant.photo_link" /> doesnt work -->
+            <!-- <img :src="'@./assets/img/'+plant.photo_link" /> doesnt work -->
+            <!-- <img src="../assets/img/gallery1.jpg"> works -->
         </div>
         <span class="card-title green-text text-darken-2 flex-box-wrap">{{plant.title}}</span>
         <p class="small-text truncate">{{plant.description}}</p>
@@ -15,24 +15,21 @@
           <p>Price: {{plant.price}}kr</p>
         </div>
         <div class="flex-box-wrap buttons-row">
-    <RouterLink :to="'/view/'+plant.id"><span class="material-icons">pageview</span></RouterLink>
-    <RouterLink :to="'/edit/'+plant.id"><span class="material-icons">create</span></RouterLink>
-    <button class="btn-delete" @click="$emit('deletePlant')"><span class="material-icons">delete</span></button>
+            <RouterLink :to="'/view/'+plant.id"><span class="material-icons">pageview</span></RouterLink>
+            <RouterLink :to="'/edit/'+plant.id"><span class="material-icons">create</span></RouterLink>
+            <button class="btn-delete" @click="$emit('deletePlant')"><span class="material-icons">delete</span></button>
  
 
-</div>
-</div>
+        </div>
+    </div>
 </template>
 
 <script>
-    // <button class="green" @click="$emit('updatePlant')">Update</button>
-    // <button class="green" @click="$emit('deletePlant')">Delete</button>
-    // import { RouterLink } from 'vue-router'
-    export default {
-        props: {
-            plant: Object
-        }
+export default {
+    props: {
+        plant: Object
     }
+}
 </script>
 
 <style scoped>
