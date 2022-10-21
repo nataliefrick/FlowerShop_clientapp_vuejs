@@ -7,8 +7,9 @@
     "preview": "vite preview --port 4173"
   },
   "dependencies": {
-    "materialize-css": "^1.0.0-rc.2",
+    "materialize-css": "^1.0.0",
     "vue": "^3.2.38",
+    "vue-materialize": "^1.0.0",
     "vue-router": "^4.1.5"
   },
   "devDependencies": {
