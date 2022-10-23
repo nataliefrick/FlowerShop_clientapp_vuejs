@@ -24,7 +24,7 @@
             <h4 class="green-text lighten-2">Plant Catalog
                 <RouterLink class="waves-effect waves-light btn-small green white-text" to="/add"><i class="material-icons left">add_circle_outline</i>New</RouterLink>
             </h4>
-            <p class="light">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo reprehenderit atque obcaecati, saepe reiciendis quos neque consequatur accusamus inventore ab ad.</p>
+            <p class="light">Below are all the items available in the shop including price and quantity.</p>
             <!-- ErrorMessage Printout -->
             <!-- <div v-if="errorMessage"><p class="red">{{errorMessage}} </p></div> -->
             <form>
@@ -125,7 +125,7 @@ export default {
             this.errorMessage = error;
         }
     },
-    emits: ["addStock", "getLowStock"],
+    emits: ["addStock", "getLowStock", "filteredList"],
     components: {
         Plant,
         LowStock
@@ -159,20 +159,26 @@ export default {
         },
         async filteredList() {
             this.errorMessage = "";
-            const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants/search/" + this.searchTerm, {
-                method: "GET",
-                headers: {
-                    "Accept" :  "application/json",
-                    "Content-type" : "application/json",
-                    "Authorization" : "Bearer " + localStorage.getItem('token')
-                }
-            });
 
-            const data = await response.json(); // save the data in sent through the response.
-            if(data.length===0) {
-                this.errorMessage = "No results found!";
-            } 
-            this.plants = data;
+            if(this.searchTerm != "") {
+                const response = await fetch("https://arcane-hamlet-64136.herokuapp.com/api/plants/search/" + this.searchTerm, {
+                    method: "GET",
+                    headers: {
+                        "Accept" :  "application/json",
+                        "Content-type" : "application/json",
+                        "Authorization" : "Bearer " + localStorage.getItem('token')
+                    }
+                });
+
+                const data = await response.json(); // save the data in sent through the response.
+                if(data.length===0) {
+                    this.errorMessage = "No results found!";
+                } 
+                this.plants = data;
+            
+            } else {
+                this.getPlants();
+            }
             
             // empty form
             // this.searchTerm = "";
