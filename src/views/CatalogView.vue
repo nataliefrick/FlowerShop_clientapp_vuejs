@@ -4,19 +4,21 @@
         <div class="section" id="lowStock" v-if="lowstock">
             <h4 class="red-text lighten-2">Low Stock Items</h4>
             <p class="light">The below items are running low on stock. There are less than 10 items in stock. Please reorder!</p>
-            <table class="striped highlight overflow-auto">
-                <thead>
-                    <tr>
-                        <th class="red-text lighten-2 padding-left">Plant</th>
-                        <th class="red-text lighten-2 centered">ArticleNr</th>
-                        <th class="red-text lighten-2 centered">Stock</th>
-                    </tr>
-                </thead>
-                <!-- @addStock="addStock(addQuantity)" -->
-                <tbody>
-                    <LowStock @addStock="addStock(lsPlant)"  v-for="lsPlant in lsPlants" :lsPlant="lsPlant" :key="lsPlant.id" />
-                </tbody>
-            </table>
+            <div class="table-wrapper">
+                <table class="striped highlight overflow-auto">
+                    <thead>
+                        <tr>
+                            <th class="red-text lighten-2 padding-left">Plant</th>
+                            <th class="red-text lighten-2 centered">ArticleNr</th>
+                            <th class="red-text lighten-2 centered">Stock</th>
+                        </tr>
+                    </thead>
+                    <!-- @addStock="addStock(addQuantity)" -->
+                    <tbody>
+                        <LowStock @addStock="addStock(lsPlant)"  v-for="lsPlant in lsPlants" :lsPlant="lsPlant" :key="lsPlant.id" />
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- Catalog Header section  -->
@@ -52,6 +54,10 @@
 </template>
 
 <style scoped>
+
+.table-wrapper {
+    overflow-x: auto;
+}
 .centered {
     text-align: center;
 }

@@ -5,18 +5,18 @@
         <div class="section">
             <div class="card nohover">
                 <div class="row">
-                    <div class="col s8">
+                    <div class="col s12 m8">
                         <h4 class="green-text lighten-2">{{this.plant.title}}</h4>
                         <p class="light">{{this.plant.description}}</p>
                         <p class="plant-details">Quantity in stock: {{this.plant.quantity}}<br>
                         Price: {{this.plant.price}}kr</p>
                     </div>
-                    <div class="col s4">
+                    <div class="col s12 m4">
                         <img :src="'/img/'+this.plant.photo_link" />
                     </div>
                 </div>
             </div>
-            <div>
+            <div id="button-row">
                 <RouterLink class="waves-effect waves-light btn green white-text e-margins" to="/catalog"><i class="material-icons left">arrow_back</i>Catalog</RouterLink>
 
                 <RouterLink class="waves-effect waves-light btn green white-text e-margins" :to="'/edit/'+this.plant.id"><span class="material-icons extra-space left">create</span>Edit</RouterLink>
@@ -89,6 +89,15 @@ export default {
 </script>
 
 <style scoped>
+div#button-row {
+    display: flex;
+    flex-direction: row;
+}
+
+div.col.s12.m4 img {
+    width: 100%;
+}
+
     a {
         line-height:32.4px
     }

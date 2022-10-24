@@ -2,27 +2,29 @@
     <div class="row">
         <form @submit.prevent="addPlant()" class="col s12">
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12 m6">
                     <input v-model="title" id="plantname" type="text" class="validate">
                     <label for="plantname">Name of Plant</label>
                 </div>
 
-                <div class="input-field col s6">
+                <div class="input-field col s12 m6">
                     <input v-model="description" id="description" type="text" class="validate">
                     <label for="description">Description</label>
                 </div>
             </div>
 
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12 m6">
                 <input v-model="photo_link" id="photo" type="text" class="validate">
-                <label for="photo">Picture Filename (if available, otherwise use default)</label>
+                <span class="small green-text">(if available, otherwise use the default: nographic.jpg) </span>
+                <label for="photo">Picture Filename
+                </label>
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s12 m6">
                 <input v-model="price" id="price" type="text" class="validate">
                 <label for="price">Price</label>
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s12 m6">
                 <input v-model="quantity" id="quantity" type="text" class="validate">
                 <label for="quantity">Stock Quantity</label>
                 </div>
@@ -91,6 +93,11 @@
 </script>
 
 <style scoped>
+
+    span.small {
+        font-size: small;
+        font-style: italic;
+    }
     div.col.s6 {
         padding: 0 4%;
     }
