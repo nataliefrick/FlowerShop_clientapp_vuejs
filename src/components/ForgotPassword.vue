@@ -7,8 +7,8 @@
       <div class="section col s8 m4">
         <div class="input-field">
             <!-- v-model="email"   -->
-          <input id="emai" type="text" class="validate">
-          <label for="emai">Email</label>
+          <input id="email" type="text" class="validate">
+          <label for="email">Email</label>
         </div>
         <button class="btn waves-effect waves-light right green" type="submit" name="action">Reset password
             <i class="material-icons right">send</i>

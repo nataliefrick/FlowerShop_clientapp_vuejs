@@ -123,10 +123,13 @@
             border-bottom: 1px solid #4CAF50!important;
             box-shadow: 0 1px 0 0 #4CAF50!important;
         }
-
+        
         input[type=text]:focus+label {
             color: #4CAF50!important;
         }
+
+
+
 
     @media only screen and (max-width: 480px) {
         .shift-right {

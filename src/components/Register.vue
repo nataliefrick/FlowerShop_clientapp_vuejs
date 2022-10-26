@@ -26,7 +26,7 @@
           <button class="btn waves-effect waves-light right green" type="submit" name="action">Register
               <i class="material-icons right">send</i>
           </button>
-          <RouterLink class="green-text register" to="/register">Login</RouterLink>
+          <RouterLink class="green-text register" to="/login">Login</RouterLink>
         </form>
         <!-- ErrorMessage Printout -->
         <div v-if="recievedMessage"><p class="text-green recievedMessage">{{recievedMessage}} </p></div>

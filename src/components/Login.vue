@@ -119,7 +119,7 @@ export default {
                 this.errorMessage = error;
                 console.log(this.errorMessage);
                 // this.$router.push('/login');
-                // window.location.href = "/login";
+                window.location.href = "/login";
               }
 
 

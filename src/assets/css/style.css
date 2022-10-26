@@ -227,6 +227,7 @@ div.card:hover {
   border:1px solid #4CAF50;
 }
 
+
 div.card.nohover:hover {
   border:0;
 }

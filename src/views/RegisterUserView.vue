@@ -1,11 +1,5 @@
 <template>
-
-<!-- ErrorMessage Printout -->
-<!-- <div v-if="errorMessage"><p class="red">{{errorMessage}} </p></div> -->
-
 <Register @userAdded="getPlants()"/>
-<!-- Message Printout -->
-<!-- <div v-if="recievedMessage"><p class="green">{{recievedMessage}} </p></div> -->
 </template>
 
 <script>
